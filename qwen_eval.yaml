@@ -1,0 +1,40 @@
+### model
+model_name_or_path: Qwen/Qwen2.5-1.5B-Instruct
+adapter_name_or_path: saves/qwen-1.5b-real/gsm8k/lora_r64
+
+### method
+stage: sft
+do_train: false
+do_eval: true
+do_predict: true
+finetuning_type: lora
+
+### dataset
+eval_dataset: gsm8k
+template: qwen
+cutoff_len: 2048
+max_samples: null
+overwrite_cache: false
+preprocessing_num_workers: 8
+
+### output
+output_dir: saves/qwen-1.5b-real/gsm8k/eval_lora_r64
+overwrite_output_dir: true
+report_to: none
+
+### evaluation
+per_device_eval_batch_size: 4
+predict_with_generate: true
+ddp_timeout: 180000000
+
+### generating (deterministic greedy decoding)
+max_new_tokens: 64
+temperature: 0.0
+top_p: 1.0
+top_k: 0
+do_sample: false
+num_beams: 1
+
+### precision
+bf16: true
+
